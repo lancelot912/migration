@@ -3,46 +3,48 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Asian Migration</title>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="Lance Lazarte">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="shortcut icon" href="" type="image/x-icon">
-    <link rel="apple-touch-icon" href="">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel=stylesheet href="css/style.css">
+  <title>Asian Migration</title>
     
+    <link href="https://fonts.googleapis.com/css?family=Verdana&display=swap" rel="stylesheet">
+
+  <!-- Custom style sheet -->
+    
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+
 </head>
-<body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container"></div>
-            <h1>Asians migrating for better opportunities</h1>
-               <hr>
-        </div>
-    </div>
 
-      
-       <div class="row">
-            <div class="col-md-12">
-	        <h4>Data Sources</h4>
-            <p>United Nations: <a href="https://www.un.org/en/development/desa/population/migration/data/estimates2/estimates19.asp" target="_blank">International Migrant Stock 2019</a></p>
-            <p>World Bank: <a href="https://data.worldbank.org/indicator/SM.POP.NETM?end=2016&start=1962&view=chart" target="_blank">Net Migration</a></p>
-            
-    </div>
+ <body>
+     <div id="title"><p>Asian migration all around the <strong>World</strong></p></div>
+     
+     <div id="flags"><img src="lib/flags.png" height="300"></div>
 
-    <!--External Script Links-->
-    <script type="text/javascript" src="lib/jquery-3.6.0.js"></script>
-    <script type="text/javascript" src="lib/bootstrap.min.js"></script>
-    <script type="text/javascript" src="lib/d3/d3.js"></script>
-    <script type="text/javascript" src="lib/d3/d3-queue.js"></script>
-    <script type="text/javascript" src="lib/topojson.min.js"></script>
-    <script type="text/javascript" src="lib/simple-statistics.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <!-- Scripts -->
+
+     <!-- topojson to geojson script -->
+     <script type="text/javascript" src="lib/topojson.min.js"></script>
+
+    <!-- d3 queue -->
+     <script type="text/javascript" src="lib/d3/d3-queue.js"></script>
+
+     <!-- simple-statistcs (for natural breaks classification) -->
+     <script type="text/javascript" src="lib/simple-statistics.min.js"></script>
+
+     <!-- d3 js -->
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/d3js/4.13.0/d3.min.js"></script>
+
+     <!-- main js file -->
+     <script type='text/javascript' src="js/1main.js"></script>
+
+     <div id="source"><p><strong>Lance Lazarte | August 2021<br>Data Source | United Nations & World Bank</strong><br>
+         World<br>Migrants<br>
+         Asia</p></div>
+
 </body>
 
 </html>
