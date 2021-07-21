@@ -126,13 +126,13 @@ function joinData(philRegions, csvData){
 //loop through csv to assign each set of csv attribute values to geojson region
 for (var i=0; i<csvData.length; i++){
     var csvRegion = csvData[i]; //the current region
-    var csvKey = csvRegion.Pcode; //the CSV primary key
+    var csvKey = csvRegion.Regions; //the CSV primary key
 
     //loop through geojson regions to find correct region
     for (var a=0; a<philRegions.length; a++){
 
         var geojsonProps = philRegions[a].properties; //the current region geojson properties
-        var geojsonKey = geojsonProps.Pcode; //the geojson primary key
+        var geojsonKey = geojsonProps.Regions; //the geojson primary key
 
         //where primary keys match, transfer csv data to geojson properties object
         if (geojsonKey == csvKey){
@@ -159,7 +159,7 @@ function setEnumerationUnits(philRegions, map, path, colorScale){
         .enter()
         .append("path")
         .attr("class", function(d){
-            return "regions " + d.properties.Pcode;
+            return "regions " + d.properties.Regions;
         })
         .attr("d", path) 
         .style("fill", function(d){
@@ -273,7 +273,7 @@ var bars = chart.selectAll(".bars")
         return b[expressed]-a[expressed]
     })
     .attr("class", function(d){
-        return "bars " + d.Pcode;
+        return "bars " + d.Regions;
     })
     //width of actual vertical bars
     .attr("width", chartInnerWidth / csvData.length - 2)  
@@ -402,7 +402,7 @@ var chartTitle = d3.select(".chartTitle")
 //function to highlight enumeration units and bars
 function highlight(props){
 //change stroke
-var selected = d3.selectAll("." + props.Pcode)
+var selected = d3.selectAll("." + props.Regions)
     .style("stroke", "aqua")
     .style("stroke-width", "2");
 setLabel(props)
@@ -410,7 +410,7 @@ setLabel(props)
 
 //function to reset the element style on mouseout
 function dehighlight(props){
-var selected = d3.selectAll("." + props.Pcode)
+var selected = d3.selectAll("." + props.Regions)
     .style("stroke", function(){
         return getStyle(this, "stroke")
     })
