@@ -20,7 +20,7 @@ var chartWidth = window.innerWidth * 0.43,
 //create a scale to size bars proportionally to frame and for axis
 //tweaks/stretches value bar height
 var yScale = d3.scale.linear()
-.range([100, 20])
+.range([100, 10])
 .domain([0, 30000]);
 
 
@@ -43,11 +43,9 @@ var map = d3.select("body")
     .attr("width", width)
     .attr("height", height);
 
-//create Albers equal area conic projection centered on Africa
+//create Albers equal area conic projection centered on Philippines
 var projection = d3.geo.mercator()
             .center([121,12.499176])
-            //.rotate([-122.427150,0])
-            //.parallels([10,15])
             .scale(2500)
             .translate([width / 2, height / 2]);
 
@@ -69,12 +67,12 @@ function callback(error, csvData, seasian, philippines){
     
     setGraticule(map, path);
 
-            //translate europe TopoJSON
+            //translate SE Asia and Philippine Regions TopoJSON
             var seasianCountries = topojson.feature(seasian, seasian.objects.seasia),
                 philRegions = topojson.feature(philippines, philippines.objects.phregion).features;
 
 
-    //add world countries to map
+    //add SE Asian countries to map
 var countries = map.append("path")
         .datum(seasianCountries)
         .attr("class", "countries")
@@ -126,13 +124,13 @@ function joinData(philRegions, csvData){
 //loop through csv to assign each set of csv attribute values to geojson region
 for (var i=0; i<csvData.length; i++){
     var csvRegion = csvData[i]; //the current region
-    var csvKey = csvRegion.Regions; //the CSV primary key
+    var csvKey = csvRegion.Pcode; //the CSV primary key
 
     //loop through geojson regions to find correct region
     for (var a=0; a<philRegions.length; a++){
 
         var geojsonProps = philRegions[a].properties; //the current region geojson properties
-        var geojsonKey = geojsonProps.Regions; //the geojson primary key
+        var geojsonKey = geojsonProps.Pcode; //the geojson primary key
 
         //where primary keys match, transfer csv data to geojson properties object
         if (geojsonKey == csvKey){
@@ -153,13 +151,13 @@ return philRegions;
 
 
 function setEnumerationUnits(philRegions, map, path, colorScale){
-    //add Africa regions to map
+    //add Philippines regions to map
     var regions = map.selectAll(".regions")
         .data(philRegions)
         .enter()
         .append("path")
         .attr("class", function(d){
-            return "regions " + d.properties.Regions;
+            return "regions " + d.properties.Pcode;
         })
         .attr("d", path) 
         .style("fill", function(d){
@@ -273,7 +271,7 @@ var bars = chart.selectAll(".bars")
         return b[expressed]-a[expressed]
     })
     .attr("class", function(d){
-        return "bars " + d.Regions;
+        return "bars " + d.Name;
     })
     //width of actual vertical bars
     .attr("width", chartInnerWidth / csvData.length - 2)  
@@ -298,7 +296,7 @@ var yAxis = d3.svg.axis()
 //place axis
 var axis = chart.append("g")
     .attr("class", "axis")
-//translate(65,0) to move the scale bar and numbers to the right 
+//translate(60,0) to move the scale bar and numbers to the right 
 .attr("transform", "translate(60,0)")
     .call(yAxis);
 
@@ -402,7 +400,7 @@ var chartTitle = d3.select(".chartTitle")
 //function to highlight enumeration units and bars
 function highlight(props){
 //change stroke
-var selected = d3.selectAll("." + props.Regions)
+var selected = d3.selectAll("." + props.Pcode)
     .style("stroke", "aqua")
     .style("stroke-width", "2");
 setLabel(props)
@@ -410,7 +408,7 @@ setLabel(props)
 
 //function to reset the element style on mouseout
 function dehighlight(props){
-var selected = d3.selectAll("." + props.Regions)
+var selected = d3.selectAll("." + props.Pcode)
     .style("stroke", function(){
         return getStyle(this, "stroke")
     })
