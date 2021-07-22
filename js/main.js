@@ -259,7 +259,7 @@ var chartBackground = chart.append("rect")
 //create a scale to size bars proportionally to frame and for axis
 //stretches vertical scale bar
 var yScale = d3.scale.linear()
-    .range([500, 70])
+    .range([500, 10])
     .domain([0, 30000]);
 
 //set bars for each province
@@ -271,7 +271,7 @@ var bars = chart.selectAll(".bars")
         return b[expressed]-a[expressed]
     })
     .attr("class", function(d){
-        return "bars " + d.Name;
+        return "bars " + d.Pcode;
     })
     //width of actual vertical bars
     .attr("width", chartInnerWidth / csvData.length - 2)  
@@ -425,11 +425,10 @@ function getStyle(element, styleName){
 
     return styleObject[styleName];
 };
+
 d3.select(".infolabel")
     .remove();
-
 };
-
 
 
 //function to create dynamic label
