@@ -1,3 +1,4 @@
+// Lab2 GEOG575 Lance Lazarte \\
 (function(){
 
     //pseudo-global variables
@@ -16,17 +17,16 @@
         translate = "translate(" + leftPadding + "," + topBottomPadding + ")";
 
     //create a scale to size bars proportionally to frame and for axis
-    //tweaks/stretches value bar height
+    //stretches value bar height
     var yScale = d3.scale.linear()
-        .range([350, 0])
-        .domain([30, 28000]);
+        .range([485, 70])
+        .domain([0, 26000]);
 
 
-    
     //begin script when window loads
     window.onload = setMap();
 
-    //Example 1.3 line 4...set up choropleth map
+    //set up choropleth map
     function setMap(){
 
     //map frame dimensions
@@ -70,7 +70,7 @@
                     philRegions = topojson.feature(philippines, philippines.objects.phregion).features;
 
 
-        //add SE Asian countries to map
+    //add SE Asian countries to map
     var countries = map.append("path")
             .datum(seasianCountries)
             .attr("class", "countries")
@@ -101,7 +101,7 @@
             .attr("class", "gratBackground") //assign class for styling
             .attr("d", path) //project graticule
 
-                    //create graticule lines
+        //create graticule lines
         var gratLines = map.selectAll(".gratLines") //select graticule elements that will be created
             .data(graticule.lines()) //bind graticule lines to each element to be created
             .enter() //create an element for each datum
@@ -143,7 +143,7 @@
 
 
     function setEnumerationUnits(philRegions, map, path, colorScale){
-        //add Philippines regions to map
+        //add Philippine regions to map
         var regions = map.selectAll(".regions")
             .data(philRegions)
             .enter()
@@ -171,14 +171,14 @@
     //function to create color scale generator
     function makeColorScale(data){
     var colorClasses = [
-        "#fef0d9",
-        "#fdcc8a",
-        "#fc8d59",
-        "#e34a33",
-        "#b30000"
+        "#FFB449",
+        "#FDDD5C",
+        "#FDFD97",
+        "#789FCC",
+        "#10B3CF"
     ];
 
-        //create color scale generator
+    //create color scale generator
     var colorScale = d3.scale.threshold()
         .range(colorClasses);
 
@@ -244,8 +244,8 @@
     //create a scale to size bars proportionally to frame and for axis
     //stretches vertical scale bar
     var yScale = d3.scale.linear()
-        .range([535, 100])
-        .domain([0, 28000]);
+        .range([535, 120])
+        .domain([0, 26000]);
 
     //set bars for each province
     var bars = chart.selectAll(".bars")
@@ -269,10 +269,15 @@
 
     //create a text element for the chart title
     var chartTitle = chart.append("text")
-        .attr("x", 50)
+        .attr("x", 75)
         .attr("y", 42)
         .attr("class", "chartTitle")
         
+    var chartFrame = chart.append("rect")
+        .attr("class", "chartFrame")
+        .attr("width", chartInnerWidth)
+        .attr("height", chartInnerHeight)
+        .attr("transform", translate);
 
     //create vertical axis generator
     var yAxis = d3.svg.axis()
@@ -282,14 +287,12 @@
     //place axis
     var axis = chart.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(60,0)")
+        .attr("transform", "translate(65,0)")
         .call(yAxis);
 
     //set bar positions, heights, and colors
     updateChart(bars, csvData.length, colorScale); 
     };
-
-
 
     //function to create a dropdown menu for attribute selection
     function createDropdown(csvData){
@@ -315,14 +318,13 @@
         .attr("value", function(d){ return d })
         .text(function(d){ return d });
     };
-
-        
-
+    
     //dropdown change listener handler
     function changeAttribute(attribute, csvData){
     //change the expressed attribute
     expressed = attribute;
 
+    
     //recreate the color scale
     var colorScale = makeColorScale(csvData);
 
@@ -344,11 +346,10 @@
         .delay(function(d, i){
             return i * 20
         })
-        .duration(2000);
+        .duration(1000);
 
     updateChart(bars, csvData.length, colorScale);
     };
-
 
 
     //function to position, size, and color bars in chart
@@ -371,7 +372,6 @@
     var chartTitle = d3.select(".chartTitle")
         .text("Emigrants from every region in " + [expressed]);
     };
-
 
 
     //function to highlight enumeration units and bars
@@ -450,5 +450,4 @@
         .style("left", x + "px")
         .style("top", y + "px");
     };
-
     })();
