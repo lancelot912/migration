@@ -269,7 +269,7 @@
 
     //create a text element for the chart title
     var chartTitle = chart.append("text")
-        .attr("x", 75)
+        .attr("x", 55)
         .attr("y", 42)
         .attr("class", "chartTitle")
         
