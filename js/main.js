@@ -53,9 +53,9 @@
 
     //use d3.queue to parallelize asynchronous data loading
     d3.queue()
-    .defer(d3.csv, "https://raw.githubusercontent.com/lancelot912/migration/main/data/emigrantph.csv") //load attributes from csv
-    .defer(d3.json, "https://raw.githubusercontent.com/lancelot912/migration/main/data/seasia.topojson") //load background spatial data
-    .defer(d3.json, "https://raw.githubusercontent.com/lancelot912/migration/main/data/phregion.topojson") //load choropleth spatial data
+    .defer(d3.csv, "data/emigrantph.csv") //load attributes from csv
+    .defer(d3.json, "data/seasia.topojson") //load background spatial data
+    .defer(d3.json, "data/phregion.topojson") //load choropleth spatial data
     .await(callback);
 
 
