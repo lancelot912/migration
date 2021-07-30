@@ -7,7 +7,7 @@
     var expressed = attrArray[0]; //initial attribute
 
         //chart frame dimensions
-    var chartWidth = window.innerWidth * 0.43,
+    var chartWidth = window.innerWidth * 0.45,
         chartHeight = 550,
         leftPadding = 70,
         rightPadding = 2,
@@ -259,7 +259,7 @@
             return "bars " + d.Pcode;
         })
         //width of actual vertical bars
-        .attr("width", chartInnerWidth / csvData.length - 2)  
+        .attr("width", chartInnerWidth / csvData.length - 3)  
         .on("mouseover", highlight)
         .on("mouseout", dehighlight)
         .on("mousemove", moveLabel);
