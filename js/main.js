@@ -7,7 +7,7 @@
     var expressed = attrArray[0]; //initial attribute
 
         //chart frame dimensions
-    var chartWidth = window.innerWidth * 0.45,
+    var chartWidth = window.innerWidth * 0.48,
         chartHeight = 550,
         leftPadding = 70,
         rightPadding = 2,
@@ -30,7 +30,7 @@
     function setMap(){
 
     //map frame dimensions
-    var width = window.innerWidth * 0.45,
+    var width = window.innerWidth * 0.40,
         height = 800;
 
 
@@ -85,7 +85,7 @@
     //add enumeration units to the map
         setEnumerationUnits(philRegions, map, path, colorScale);
         setChart(csvData, colorScale);
-        createDropdown(csvData)
+        createDropdown(csvData);
         };
     };
 
@@ -224,7 +224,7 @@
     //function to create coordinated bar chart
     function setChart(csvData, colorScale){
     //chart main frame dimensions
-    var chartWidth = window.innerWidth * 0.45,
+    var chartWidth = window.innerWidth * 0.5,
         chartHeight = 550,
         leftPadding = 65,
         rightPadding = 10,
@@ -450,4 +450,5 @@
         .style("left", x + "px")
         .style("top", y + "px");
     };
+
     })();
